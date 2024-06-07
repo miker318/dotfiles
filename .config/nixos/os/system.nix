@@ -55,7 +55,6 @@ in {
     get-sri-hash
     neovim
     kakoune
-    yubikey-personalization
     gcc
     gnupg
     capitaine-cursors
