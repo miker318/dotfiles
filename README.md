@@ -1,4 +1,4 @@
-# kjhoerr dotfiles
+# miker318 dotfiles (based on kjhoerr dotfiles)
 [![update](https://github.com/kjhoerr/dotfiles/actions/workflows/update.yml/badge.svg)](https://github.com/kjhoerr/dotfiles/actions/workflows/update.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -10,14 +10,14 @@ flake:
 
 ```bash
 # Invoked off of current hostname
-sudo nixos-rebuild --flake github:kjhoerr/dotfiles switch
+sudo nixos-rebuild --flake github:miker318/dotfiles switch
 ```
 
 And I can update my user's home configurations against this flake as well:
 
 ```bash
 # Invoked off of current username
-home-manager --flake github:kjhoerr/dotfiles switch
+home-manager --flake github:miker318/dotfiles switch
 ```
 
 In this way system and user profiles can be managed and updated separately.
