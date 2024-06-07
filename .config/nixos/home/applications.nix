@@ -13,13 +13,13 @@
     dictionaries = [
       pkgs.hunspellDictsChromium.en_US
     ];
-    extensions = [
-      { id = "ocaahdebbfolfmndjeplogmgcagdmblk"; }
-      { id = "nngceckbapebfimnlniiiahkandclblb"; }
-      { id = "ecjfaoeopefafjpdgnfcjnhinpbldjij"; }
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
-      { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; }
-    ];
+    #extensions = [
+    #  { id = "ocaahdebbfolfmndjeplogmgcagdmblk"; }
+    #  { id = "nngceckbapebfimnlniiiahkandclblb"; }
+    #  { id = "ecjfaoeopefafjpdgnfcjnhinpbldjij"; }
+    #  { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; }
+    #  { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; }
+    #];
   };
 
   home.packages = lib.mkBefore (with pkgs; [
