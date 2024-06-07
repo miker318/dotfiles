@@ -10,14 +10,14 @@ flake:
 
 ```bash
 # Invoked off of current hostname
-sudo nixos-rebuild --flake github:miker318/dotfiles switch
+sudo nixos-rebuild --flake github:miker318/dotfiles?ref=testing switch
 ```
 
 And I can update my user's home configurations against this flake as well:
 
 ```bash
 # Invoked off of current username
-home-manager --flake github:miker318/dotfiles switch
+home-manager --flake github:miker318/dotfiles?ref=testing switch
 ```
 
 In this way system and user profiles can be managed and updated separately.
