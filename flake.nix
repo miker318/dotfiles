@@ -15,12 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Module for running NixOS as WSL2 instance
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixos-pkgs";
-    };
-
     # Service to fix libraries and links for NixOS hosting as VSCode remote
     vscode-server = {
       url = "github:nix-community/nixos-vscode-server";
@@ -87,25 +81,11 @@
         }
       ];
 
-      # OS config modules for base WSL system
-      wslModules = [
-        "${inputs.nixos-pkgs}/nixos/modules/profiles/minimal.nix"
-        inputs.nixos-wsl.nixosModules.wsl
-        ./.config/nixos/os/upgrade.nix
-      ];
-
       # Function to build a home configuration from user modules
       homeUser = (userModules: inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         # userModules overwrites, so is appended
         modules = homeModules ++ guiModules ++ userModules;
-      });
-
-      # Function to build a home configuration from user modules for WSL
-      wslUser = (userModules: inputs.home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        # userModules overwrites, so is appended
-        modules = homeModules ++ serverHomeModules ++ userModules;
       });
 
       # Function to build a nixos configuration from system modules
@@ -115,44 +95,22 @@
         modules = systemModules ++ osModules;
       });
 
-      # Function to build a nixos configuration for WSL
-      wslSystem = (systemModules: lib.nixosSystem {
-        inherit system;
-        modules = systemModules ++ wslModules;
-      });
-
     in {
       homeConfigurations = {
 
-        khoerr = homeUser [ ./.config/nixos/users/khoerr.nix ];
-
-        kjhoerr = homeUser [ ./.config/nixos/users/kjhoerr.nix ];
-
-        nixos = wslUser [ ./.config/nixos/users/nixos.nix ];
+        mrose = homeUser [ ./.config/nixos/users/mrose.nix ];
 
       };
       nixosConfigurations = {
 
-        ariadne = nixosSystem [
-          inputs.nixos-hardware.nixosModules.framework-13-7040-amd
-          ./.config/nixos/systems/ariadne.nix
+        fw-laptop = nixosSystem [
+          inputs.nixos-hardware.nixosModules.framework-13-11th-gen-intel
+          ./.config/nixos/systems/fw-laptop.nix
         ];
 
         cronos = nixosSystem [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-p1-gen3
           ./.config/nixos/systems/cronos.nix
-        ];
-
-        whisker = nixosSystem [
-          inputs.nixos-hardware.nixosModules.common-gpu-amd
-          ./.config/nixos/systems/whisker.nix
-        ];
-
-        nixos-wsl = wslSystem [
-          ./.config/nixos/systems/wsl.nix
-          {
-            users.users.nixos.extraGroups = lib.mkAfter [ "docker" ];
-          }
         ];
 
       };
