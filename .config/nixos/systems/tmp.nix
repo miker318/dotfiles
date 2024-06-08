@@ -2,7 +2,7 @@
 { pkgs, ... }: {
 
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ (${modulesPath} + "/profiles/qemu-guest.nix")
     ];
 
   networking.hostName = "tmp";
