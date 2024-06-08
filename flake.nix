@@ -113,6 +113,10 @@
           ./.config/nixos/systems/cronos.nix
         ];
 
+        tmp = nixosSystem [
+          ./.config/nixos/systems/tmp.nix
+        ];
+
       };
     };
 }
