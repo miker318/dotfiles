@@ -5,7 +5,7 @@
 ## provided as option(s) to nix build
 
 ## Setup - strongly assume defaults
-SOURCE="github:kjhoerr/dotfiles"
+SOURCE="github:miker318/dotfiles?ref=testing"
 SYSPROFILE="/nix/var/nix/profiles/system"
 HOSTNAME=$(hostname)
 USERNAME=$(whoami)
