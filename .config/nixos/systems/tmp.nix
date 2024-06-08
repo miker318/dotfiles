@@ -5,7 +5,7 @@
     [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
-  networking.hostName = "fw-laptop";
+  networking.hostName = "tmp";
 
   boot = {
     initrd = {
