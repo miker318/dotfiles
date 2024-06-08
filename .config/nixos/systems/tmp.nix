@@ -1,6 +1,10 @@
 # fw-laptop.nix
 { pkgs, ... }: {
 
+  imports =
+    [ (modulesPath + "/profiles/qemu-guest.nix")
+    ];
+
   networking.hostName = "fw-laptop";
 
   boot = {
