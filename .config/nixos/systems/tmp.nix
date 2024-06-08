@@ -18,45 +18,44 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/5767338b-cc2e-43f3-8e07-f31c82a42345";
+    { device = "/dev/disk/by-uuid/bfc44ee2-207c-4095-8da5-fe1e639d5a74";
       fsType = "btrfs";
       options = [ "subvol=root" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/5767338b-cc2e-43f3-8e07-f31c82a42345";
+    { device = "/dev/disk/by-uuid/bfc44ee2-207c-4095-8da5-fe1e639d5a74";
       fsType = "btrfs";
       options = [ "subvol=home" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/5767338b-cc2e-43f3-8e07-f31c82a42345";
+    { device = "/dev/disk/by-uuid/bfc44ee2-207c-4095-8da5-fe1e639d5a74";
       fsType = "btrfs";
       options = [ "subvol=nix" "compress=zstd" "noatime" ];
     };
 
   fileSystems."/persist" =
-    { device = "/dev/disk/by-uuid/5767338b-cc2e-43f3-8e07-f31c82a42345";
+    { device = "/dev/disk/by-uuid/bfc44ee2-207c-4095-8da5-fe1e639d5a74";
       fsType = "btrfs";
       options = [ "subvol=persist" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/E7EE-9A6C";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/5767338b-cc2e-43f3-8e07-f31c82a42345";
+    { device = "/dev/disk/by-uuid/bfc44ee2-207c-4095-8da5-fe1e639d5a74";
       fsType = "btrfs";
       options = [ "subvol=log" "compress=zstd" "noatime" ];
       neededForBoot = true;
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/C464-D756";
-      fsType = "vfat";
-    };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/e0126018-1442-4e0f-9a48-81af5aa0778d"; }
-    ];
+  swapDevices = [ ];
 
   nixpkgs.hostPlatform = "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;
